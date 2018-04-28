@@ -1,5 +1,15 @@
+@charset "UTF-8";
+html, body {
+  height: 100%;
+  /* important to vertically align the container */
+  margin: 0;
+  padding: 0; }
+
 #app {
   font-family: 'Open Sans', sans-serif; }
+  #app #logo {
+    width: 200px;
+    margin: 35px auto 10px auto; }
   #app #search-container .input-group, #app #search-container button {
     height: 38px; }
   #app .results li {
@@ -14,3 +24,15 @@
   #app #single-view img {
     display: block;
     margin: 15px auto; }
+  #app #single-view button {
+    height: 38px;
+    margin: auto;
+    width: 70px;
+    display: block; }
+  #app #single-view .vertical-center {
+    min-height: 100%;
+    /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh;
+    /* These two lines are counted as one 🙂       */
+    display: flex;
+    align-items: center; }

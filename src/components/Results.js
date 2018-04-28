@@ -17,7 +17,7 @@ class Results extends Component {
             childElements = this.props.resultData.results.map(function (gif, i) {
                 return (
                     <li key={"gif-" + i} className="gif-result">
-                        <Link to={"/gif/" + gif.id}>
+                        <Link to={"/single/" + gif.id}>
                             <img src={gif.media[0].tinygif.url} alt={gif.title}/>
                         </Link>
                     </li>

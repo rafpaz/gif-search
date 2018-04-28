@@ -2,15 +2,25 @@ import React, {Component} from 'react';
 import gifsAPI from "../gifsAPI";
 
 class SingleView extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             gifUrl: "",
             title: ""
         };
+        this.backEvent = this.backEvent.bind(this);
+        this.share = this.share.bind(this);
     }
 
-    componentDidMount(){
+    backEvent() {
+        window.history.back();
+    }
+
+    share() {
+
+    }
+
+    componentDidMount() {
         gifsAPI.gif(this.props.match.params.id)
             .then(gifData => {
                 this.setState({
@@ -23,7 +33,19 @@ class SingleView extends Component {
     render() {
         return (
             <div id={"single-view"}>
-                <img src={this.state.gifUrl} alt={this.state.title}/>
+                <div className="vertical-center">
+                    <div className="container" id={"search-container"}>
+                        <button className={"row btn btn-outline-secondary"}
+                                onClick={this.backEvent}>
+                            Back
+                        </button>
+                        <div className="row justify-content-md-center">
+                            <img src={this.state.gifUrl} alt={this.state.title}/>
+                        </div>
+                        <button className={"row btn btn-primary"} onClick={this.share}>Share
+                        </button>
+                    </div>
+                </div>
             </div>
         );
     }
