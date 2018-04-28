@@ -21,7 +21,7 @@ class Search extends Component {
                 />
                 <button onClick={this.props.onSubmit}>Search</button>
                 <div id="pagination-container">
-                    <label htmlFor={"pagination"}>Items Per Page</label>
+                    <label htmlFor={"pagination"}>Items Per Pages!</label>
                     <select id={"pagination"} value={this.props.perPage} onChange={this.props.onPerPageChange}>
                         <option value="5">5</option>
                         <option value="10">10</option>
