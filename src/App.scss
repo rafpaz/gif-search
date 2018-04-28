@@ -1,0 +1,58 @@
+#app {
+  font-family: 'Open Sans', sans-serif;
+  
+  #search-container{
+    margin: 10px auto 0px auto;
+    width: 594px;
+    display: flex;
+
+    input {
+      margin-right: 15px;
+      float: left;
+    }
+
+    button {
+      float: left;
+      margin-right: 5px;
+    }
+    #pagination-container{
+      float: left;
+      label{
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .table {
+    width: 100%;
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+
+    #btn-container{
+      width: 120px;
+      margin: 5px auto;
+
+      button{
+        margin-right: 5px;
+      }
+    }
+
+    .header, .row {
+      display: flex;
+      
+      div {
+        flex: 1;
+        padding: 0.2rem 0.4em;
+        border: 1px solid rgb(238, 238, 238);
+      }
+    }
+    
+    .header {
+      background-color: rgb(238, 238, 238);
+      div { 
+        cursor: pointer;
+      }
+    }
+  }
+}

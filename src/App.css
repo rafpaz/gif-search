@@ -1,0 +1,36 @@
+#app {
+  font-family: 'Open Sans', sans-serif; }
+  #app #search-container {
+    margin: 10px auto 0px auto;
+    width: 594px;
+    display: flex; }
+    #app #search-container input {
+      margin-right: 15px;
+      float: left; }
+    #app #search-container button {
+      float: left;
+      margin-right: 5px; }
+    #app #search-container #pagination-container {
+      float: left; }
+      #app #search-container #pagination-container label {
+        margin-right: 5px; }
+  #app .table {
+    width: 100%;
+    margin: 1em;
+    display: flex;
+    flex-direction: column; }
+    #app .table #btn-container {
+      width: 120px;
+      margin: 5px auto; }
+      #app .table #btn-container button {
+        margin-right: 5px; }
+    #app .table .header, #app .table .row {
+      display: flex; }
+      #app .table .header div, #app .table .row div {
+        flex: 1;
+        padding: 0.2rem 0.4em;
+        border: 1px solid #eeeeee; }
+    #app .table .header {
+      background-color: #eeeeee; }
+      #app .table .header div {
+        cursor: pointer; }
