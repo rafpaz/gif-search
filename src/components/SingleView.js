@@ -22,7 +22,7 @@ class SingleView extends Component {
 
     render() {
         return (
-            <div>
+            <div id={"single-view"}>
                 <img src={this.state.gifUrl} alt={this.state.title}/>
             </div>
         );

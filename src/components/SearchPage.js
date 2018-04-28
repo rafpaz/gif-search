@@ -3,22 +3,35 @@ import Search from "./Search";
 import Results from "./Results";
 import gifsAPI from "../gifsAPI";
 
-class Homepage extends Component {
+class SearchPage extends Component {
     constructor(props) {
         super(props);
-        this.onSearch = this.onSearch.bind(this);
-        this.onInputChange = this.onInputChange.bind(this);
-        this.onPerPageChange = this.onPerPageChange.bind(this);
-        this.onPaginationPress = this.onPaginationPress.bind(this);
         this.state = {
             showResults: false,
-            searchInput: "happy",
-            perPage: 10,
+            searchQuery: this.props.match.params.query,
+            perPage: this.props.match.params.limit,
             currentPage: 1,
-            nextPos: "",
+            nextPos: this.props.match.params.position,
             showNext: false,
             showPrev: false
-        }
+        };
+
+        this.onSearch = this.onSearch.bind(this);
+    }
+
+    componentWillReceiveProps(newProps){
+        this.setState({
+            searchQuery: newProps.match.params.query,
+            perPage: newProps.match.params.limit,
+            nextPos: newProps.match.params.position,
+            },
+            function(){
+                this.onSearch();
+            });
+    }
+
+    componentDidMount(){
+        this.onSearch();
     }
 
     onInputChange(event) {
@@ -41,10 +54,10 @@ class Homepage extends Component {
 
     onSearch() {
         this.setState({
-            gifsData: {}
+            gifsData: {},
         });
         gifsAPI.setLimit(this.state.perPage);
-        gifsAPI.search(this.state.searchInput)
+        gifsAPI.search(this.state.searchQuery)
             .then(data => {
                 this.setState({
                     gifsData: data,
@@ -53,23 +66,12 @@ class Homepage extends Component {
             });
     }
 
-    onPerPageChange(e) {
-        let num = parseInt(e.target.value, 10);
-        this.setState({
-            perPage: num
-        });
-        // this.onSearch();
-    }
-
     render() {
         return (
             <div className="App">
                 <Search
-                    searchInput={this.state.searchInput}
-                    onSubmit={this.onSearch}
-                    onPerPageChange={this.onPerPageChange}
-                    perPage={this.state.perPage}
-                    onInputChange={this.onInputChange}
+                    searchQuery={this.state.searchQuery}
+                    onSearch={this.onSearch}
                 />
                 {this.state.showResults &&
                 <Results
@@ -81,4 +83,4 @@ class Homepage extends Component {
     }
 }
 
-export default Homepage;
+export default SearchPage;

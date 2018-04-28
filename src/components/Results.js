@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Masonry from 'react-masonry-component';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 
 const masonryOptions = {
@@ -11,10 +11,10 @@ const masonryOptions = {
 
 class Results extends Component {
     render() {
-        let childElements,showResults=false;
-        if(this.props.resultData.results){
+        let childElements, showResults = false;
+        if (this.props.resultData.results) {
             showResults = true;
-            childElements = this.props.resultData.results.map(function(gif,i){
+            childElements = this.props.resultData.results.map(function (gif, i) {
                 return (
                     <li key={"gif-" + i} className="gif-result">
                         <Link to={"/gif/" + gif.id}>
@@ -27,6 +27,7 @@ class Results extends Component {
         return (
             <div>
                 {showResults &&
+                <div>
                     <Masonry
                         className={'results'}
                         elementType={'ul'}
@@ -36,7 +37,17 @@ class Results extends Component {
                     >
                         {childElements}
                     </Masonry>
+                    <div id={"navigation-btns"}>
+                        <button type="button" className="btn btn-secondary"><i
+                            className="material-icons">navigate_before</i>
+                        </button>
+                        <button type="button" className="btn btn-secondary"><i
+                            className="material-icons">navigate_next</i>
+                        </button>
+                    </div>
+                </div>
                 }
+
             </div>
         );
     }

@@ -1,26 +1,70 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class Search extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            searchQuery: this.props.searchQuery,
+            limit: 20
+        };
+
+        this.onValueChange = this.onValueChange.bind(this);
+    }
+
+    onValueChange(event) {
+        const target = event.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+            [name]: value
+        });
+    }
+
     render() {
         return (
-            <div id="search-container">
-                <input id="searchInput"
-                        name={"searchInput"}
-                        type="text"
-                        placeholder={"Search for gifs"}
-                        value={this.props.searchInput}
-                        onChange={this.props.onInputChange}
-                />
-                <button onClick={this.props.onSubmit}>Search</button>
-                <div id="pagination-container">
-                    <label htmlFor={"pagination"}>Items Per Page</label>
-                    <select id={"pagination"} value={this.props.perPage} onChange={this.props.onPerPageChange}>
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                        <option value="30">30</option>
-                    </select>
+            <div className="container" id={"search-container"}>
+                <div className="row justify-content-md-center">
+                    <div className="input-group mb-3 mt-3 col-5">
+                        <input type="text"
+                               className="form-control"
+                               placeholder="Search for gifs"
+                               aria-label="Search for gifs"
+                               aria-describedby="gif-search"
+                               id="searchInput"
+                               name={"searchQuery"}
+                               value={this.state.searchQuery}
+                               onChange={this.onValueChange}
+                        />
+                        <div className="input-group-append">
+                            <Link to={"/search/" + this.state.searchQuery + "/" + this.state.limit + "/" + 0}>
+                                <button id={"search-btn"}
+                                        className="btn btn-outline-secondary"
+                                        type="button"
+                                        // onClick={this.props.onSearch}
+                                >
+                                    <i className="material-icons">search</i>
+                                </button>
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="input-group col-3 mt-3">
+                        <div className="input-group-prepend ml-3">
+                            <label className="input-group-text" htmlFor="per-page">Per Page</label>
+                        </div>
+                        <select id="limit-select"
+                                className="custom-select col-3"
+                                value={this.state.perPage}
+                                onChange={this.onValueChange}
+                                name={"limit"}
+                        >
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         );
@@ -28,11 +72,8 @@ class Search extends Component {
 }
 
 Search.propTypes = {
-    searchInput: PropTypes.string,
-    onInputChange: PropTypes.func,
-    onSubmit: PropTypes.func,
-    perPage: PropTypes.number,
-    onPerPageChange: PropTypes.func,
+    searchQuery: PropTypes.string,
+    onSearch: PropTypes.func,
 };
 
 export default Search;

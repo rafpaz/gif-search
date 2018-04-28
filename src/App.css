@@ -1,19 +1,16 @@
 #app {
   font-family: 'Open Sans', sans-serif; }
-  #app #search-container {
-    margin: 10px auto 0px auto;
-    width: 594px;
-    display: flex; }
-    #app #search-container input {
-      margin-right: 15px;
-      float: left; }
-    #app #search-container button {
-      float: left;
-      margin-right: 5px; }
-    #app #search-container #pagination-container {
-      float: left; }
-      #app #search-container #pagination-container label {
-        margin-right: 5px; }
+  #app #search-container .input-group, #app #search-container button {
+    height: 38px; }
   #app .results li {
     display: block;
     margin-bottom: 5px; }
+  #app #navigation-btns {
+    width: 140px;
+    margin: 0 auto; }
+    #app #navigation-btns button {
+      margin-right: 15px;
+      height: 35px; }
+  #app #single-view img {
+    display: block;
+    margin: 15px auto; }
