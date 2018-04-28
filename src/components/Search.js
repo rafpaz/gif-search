@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class Search extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             searchQuery: this.props.searchQuery,
@@ -11,6 +11,13 @@ class Search extends Component {
         };
 
         this.onValueChange = this.onValueChange.bind(this);
+    }
+
+    componentWillReceiveProps(newProps) {
+        let newLimit = newProps.limit ? newProps.limit : 20;
+        this.setState({
+            limit: newLimit
+        });
     }
 
     onValueChange(event) {
@@ -43,7 +50,6 @@ class Search extends Component {
                                 <button id={"search-btn"}
                                         className="btn btn-outline-secondary"
                                         type="button"
-                                        // onClick={this.props.onSearch}
                                 >
                                     <i className="material-icons">search</i>
                                 </button>
@@ -56,7 +62,7 @@ class Search extends Component {
                         </div>
                         <select id="limit-select"
                                 className="custom-select col-3"
-                                value={this.state.perPage}
+                                value={this.state.limit}
                                 onChange={this.onValueChange}
                                 name={"limit"}
                         >
@@ -72,8 +78,7 @@ class Search extends Component {
 }
 
 Search.propTypes = {
-    searchQuery: PropTypes.string,
-    onSearch: PropTypes.func,
+    searchQuery: PropTypes.string
 };
 
 export default Search;
