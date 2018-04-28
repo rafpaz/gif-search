@@ -5,23 +5,16 @@ class Search extends Component {
     render() {
         return (
             <div id="search-container">
-                <input id="userName"
-                        name={"userName"}
+                <input id="searchInput"
+                        name={"searchInput"}
                         type="text"
-                        placeholder={"User Name"}
-                        value={this.props.userName}
-                        onChange={this.props.onInputChange}
-                />
-                <input id="repoName"
-                        name={"repoName"}
-                        type="text"
-                        placeholder={"User Repo"}
-                        value={this.props.repoName}
+                        placeholder={"Search for gifs"}
+                        value={this.props.searchInput}
                         onChange={this.props.onInputChange}
                 />
                 <button onClick={this.props.onSubmit}>Search</button>
                 <div id="pagination-container">
-                    <label htmlFor={"pagination"}>Items Per Pages!</label>
+                    <label htmlFor={"pagination"}>Items Per Page</label>
                     <select id={"pagination"} value={this.props.perPage} onChange={this.props.onPerPageChange}>
                         <option value="5">5</option>
                         <option value="10">10</option>
@@ -35,12 +28,11 @@ class Search extends Component {
 }
 
 Search.propTypes = {
-    onSubmit: PropTypes.func,
+    searchInput: PropTypes.string,
     onInputChange: PropTypes.func,
-    onPerPageChange: PropTypes.func,
-    userName: PropTypes.string,
-    repoName: PropTypes.string,
+    onSubmit: PropTypes.func,
     perPage: PropTypes.number,
+    onPerPageChange: PropTypes.func,
 };
 
 export default Search;
