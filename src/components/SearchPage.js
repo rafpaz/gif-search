@@ -10,10 +10,8 @@ class SearchPage extends Component {
             showResults: false,
             searchQuery: this.props.match.params.query,
             limit: this.props.match.params.limit,
-            currentPage: 1,
-            nextPos: this.props.match.params.position,
+            currPos: this.props.match.params.position,
             showNext: false,
-            showPrev: false
         };
 
         this.onSearch = this.onSearch.bind(this);
@@ -57,6 +55,7 @@ class SearchPage extends Component {
             gifsData: {},
         });
         gifsAPI.setLimit(this.state.limit);
+        gifsAPI.setPosition(this.state.currPos);
         gifsAPI.search(this.state.searchQuery)
             .then(data => {
                 this.setState({
@@ -67,6 +66,8 @@ class SearchPage extends Component {
     }
 
     render() {
+        const nextPos = this.state.showNext ? this.state.currPos + this.state.limit : -1;
+        const prevPos = this.state.currPos > 0 ? this.state.currPos - this.state.limit : -1;
         return (
             <div className="App">
                 <Search
@@ -76,6 +77,10 @@ class SearchPage extends Component {
                 {this.state.showResults &&
                 <Results
                     resultData={this.state.gifsData}
+                    searchQuery={this.state.searchQuery}
+                    limit={this.state.limit}
+                    nextPos={nextPos}
+                    prevPos={prevPos}
                 />
                 }
             </div>
