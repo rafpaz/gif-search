@@ -39,14 +39,14 @@ class Results extends Component {
                     </Masonry>
                     <div id={"navigation-btns"}>
                         {this.props.prevPos !== -1 &&
-                            <Link to={"/search/" + this.props.searchQuery + "/" + this.props.limit + "/" + this.props.nextPos}>
+                            <Link to={"/search/" + this.props.searchQuery + "/" + this.props.limit + "/" + this.props.prevPos}>
                                 <button type="button" className="btn btn-secondary"><i
                                     className="material-icons">navigate_before</i>
                                 </button>
                             </Link>
                         }
                         {this.props.nextPos !== -1 &&
-                        <Link to={"/search/" + this.props.searchQuery + "/" + this.props.limit + "/" + this.props.prevPos}>
+                        <Link to={"/search/" + this.props.searchQuery + "/" + this.props.limit + "/" + this.props.nextPos}>
                             <button type="button" className="btn btn-secondary"><i
                                 className="material-icons">navigate_next</i>
                             </button>

@@ -1,31 +1,33 @@
 import React, {Component} from 'react';
 import gifsAPI from "../gifsAPI";
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 class SingleView extends Component {
     constructor(props) {
         super(props);
         this.state = {
             gifUrl: "",
-            title: ""
+            title: "",
+            copied: false
         };
         this.backEvent = this.backEvent.bind(this);
-        this.share = this.share.bind(this);
+        this.onCopy = this.onCopy.bind(this);
     }
 
     backEvent() {
         window.history.back();
     }
 
-    share() {
-
-    }
+    onCopy = () => {
+        this.setState({copied: true});
+    };
 
     componentDidMount() {
         gifsAPI.gif(this.props.match.params.id)
             .then(gifData => {
                 this.setState({
                     gifUrl: gifData.results[0].media[0].gif.url,
-                    title: gifData.title
+                    title: gifData.title,
                 });
             });
     }
@@ -42,8 +44,9 @@ class SingleView extends Component {
                         <div className="row justify-content-md-center">
                             <img src={this.state.gifUrl} alt={this.state.title}/>
                         </div>
-                        <button className={"row btn btn-primary"} onClick={this.share}>Share
-                        </button>
+                        <CopyToClipboard onCopy={this.onCopy} text={this.state.gifUrl}>
+                            <button className={"row btn btn-primary"}>Share</button>
+                        </CopyToClipboard>
                     </div>
                 </div>
             </div>
