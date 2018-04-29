@@ -8,7 +8,8 @@ html, body {
 #app {
   font-family: 'Open Sans', sans-serif; }
   #app #logo {
-    width: 200px;
+    font-family: 'Titan One', cursive;
+    width: 230px;
     margin: 35px auto 10px auto; }
   #app #search-container .input-group, #app #search-container button {
     height: 38px; }
