@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 
 class Search extends Component {
     constructor(props) {
@@ -11,6 +11,7 @@ class Search extends Component {
         };
 
         this.onValueChange = this.onValueChange.bind(this);
+        this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
     componentWillReceiveProps(newProps) {
@@ -30,6 +31,12 @@ class Search extends Component {
         });
     }
 
+    handleKeyPress(target) {
+        if(target.charCode==13){
+            this.props.history.push("/search/" + this.state.searchQuery + "/" + this.state.limit + "/" + 0);   
+        }
+    }
+
     render() {
         return (
             <div className="container" id={"search-container"}>
@@ -44,6 +51,7 @@ class Search extends Component {
                                name={"searchQuery"}
                                value={this.state.searchQuery}
                                onChange={this.onValueChange}
+                               onKeyPress={this.handleKeyPress}
                         />
                         <div className="input-group-append">
                             <Link to={"/search/" + this.state.searchQuery + "/" + this.state.limit + "/" + 0}>
@@ -81,4 +89,4 @@ Search.propTypes = {
     searchQuery: PropTypes.string
 };
 
-export default Search;
+export default withRouter(Search);
