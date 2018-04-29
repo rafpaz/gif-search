@@ -32,7 +32,7 @@ class Search extends Component {
     }
 
     handleKeyPress(target) {
-        if(target.charCode==13){
+        if(target.charCode === 13){
             this.props.history.push("/search/" + this.state.searchQuery + "/" + this.state.limit + "/" + 0);   
         }
     }

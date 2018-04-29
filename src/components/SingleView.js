@@ -44,7 +44,7 @@ class SingleView extends Component {
                         <div className="row justify-content-md-center">
                             <img src={this.state.gifUrl} alt={this.state.title}/>
                         </div>
-                        <CopyToClipboard onCopy={this.onCopy} text={this.state.gifUrl}>
+                        <CopyToClipboard onCopy={this.onCopy} text={window.location.href.replace("single","gif")}>
                             <button className={"row btn btn-primary"}>Share</button>
                         </CopyToClipboard>
                     </div>
